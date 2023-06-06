@@ -1,0 +1,99 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class tele{
+  public:
+  int arr[50][50];
+  int jio[50][50],airtel[50][50],vi[50][50];
+  string arrc[50];
+  int citycount=0;
+  string comp[3]={"jio","airtel","vi"};
+  int cityno;
+    
+    void acceptcity(){
+        cout<<"enter the total no of citites ";
+        cin>>cityno;
+        
+        cout<<"enter the name of citites";
+        for(int i=0;i<cityno;i++){
+            cin>>arrc[i];
+        }
+    }
+    
+    void acceptcost(int arrr[][50]){
+    	cout<<"\n\nEnter the cost of connection:-(Enter 0 for same office city)\n";
+		cout<<"Costing for "<<comp[citycount];
+		citycount++;
+		
+		for(int i=0;i<cityno;i++){
+		    for(int j=0;j<cityno;j++){
+		        
+		        cout<<arrc[i]<<"->"<<arrc[j]<<":";
+		        cin>>arrr[i][j];
+		    }
+		}
+        
+        for(int i=0;i<citycount;i++){
+            for(int j=0;j<citycount;j++){
+                arr[i][j]=999;
+            }
+        }
+    }
+    
+    void display(){
+        for(int i=0;i<cityno;i++){
+            for(int j=0;j<cityno;j++){
+                cout<<arr[i][j]<<" ";
+            }
+        cout<<endl;}
+    }
+    
+    void compare(int oper[][50]){
+        for(int i=0;i<cityno;i++){
+            for (int j=0;j<cityno;j++){
+                if(oper[i][j]<arr[i][j]){
+                    arr[i][j]=oper[i][j];
+                }
+            }
+        }
+    }
+};
+
+int main(){
+    tele g;
+    int ch;
+    while(true){
+        cout<<"\n\n1. Enter Office data";
+		cout<<"\n2. Display Resultant Matrix";
+		cout<<"\n3. Compare and find minimum cost";
+		cout<<"\n4. Exit";
+		cout<<"\n\nEnter your choice: ";
+		cin>>ch;
+		switch(ch){
+		    case 1:
+		        g.acceptcity();
+		        g.acceptcost(g.jio);
+		        g.acceptcost(g.airtel);
+		        g.acceptcost(g.vi);
+		        break;
+		
+		    case 2:
+		        g.display();
+		        break;
+		   
+		   case 3:
+		        g.compare(g.jio);
+		        g.compare(g.airtel);
+		        g.compare(g.vi);
+		        cout<<"complete";
+		        break;
+		        
+		   case 4:
+		    break;
+		}
+    }
+    
+    
+    return 0;
+}
